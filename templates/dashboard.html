@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2 class="mb-4">Panel de Visualización</h2>
+
+<ul class="nav nav-tabs mb-3" id="dashboardTabs" role="tablist">
+  {% for permiso in current_user.permissions %}
+    <li class="nav-item" role="presentation">
+        <button class="nav-link {% if loop.first %}active{% endif %}" id="tab-{{ permiso|lower }}-tab" data-bs-toggle="tab" data-bs-target="#tab-{{ permiso|lower }}" type="button" role="tab">
+            {{ permiso.replace('_', ' ') }}
+        </button>
+    </li>
+  {% endfor %}
+</ul>
+
+<div class="tab-content" id="dashboardTabsContent">
+  {% for permiso in current_user.permissions %}
+  <div class="tab-pane fade {% if loop.first %}show active{% endif %}" id="tab-{{ permiso|lower }}" role="tabpanel">
+      <div style="width: 100%; height: 80vh;">
+          {% if permiso == 'Críticos' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYWI0OGIxNzQtMmNjOC00ODE3LThiYmQtODY4YWFkNTE2NWMzIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Almacén' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMmIyYzE5NDEtMjc3NS00NjJmLWE0YzgtNzU1YTA0ZmI5Mzg2IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Compras' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYTliMmIzMGYtZTNhOS00NjljLWI4MjgtYWU0OThjNGZiYjUwIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Cajas_medidores' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNDlhOWU0OTItMTI2OC00YzQ4LTliZmMtYzY4NjQyYTY4MWM1IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Suministro_EPP' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYWI0OGIxNzQtMmNjOC00ODE3LThiYmQtODY4YWFkNTE2NWMzIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Dotación' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNTU5MTdhYmEtZTk1Yy00MWJiLWEwNTktYzgyOGEzMzJhNjI5IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Abrazaderas_metálicas' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNGNiNjNlZDEtNDljMi00Y2FhLTliN2ItMTI0YmZhOTc5NGYyIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Válvulas_mariposa' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiN2ZlMWE3OGItMmJkMy00YWRkLTg4ZjMtOGI5YzM3ZTJjMGRlIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Válvulas_compuerta' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiZDc1ZDgwZDUtZDkwZi00YzYyLTlkNjAtNjUxY2IyNTlmYTQ3IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Tubería_ACC_PVC' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiOTY1YWVjZTEtNmEzMC00OWRmLTgzMDgtYzUzM2Q1NmQ4N2UzIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Accesorios_PEAD' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNTlkZmI0MzUtZTk2Yy00ZGJjLWI2NTktNTE4NmY2NWQwOTlmIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Tubería_PEAD' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNTkyNmE0YzUtZDIzYS00MmZkLTkxYzAtNWM1OWIyN2I1YjM0IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Lubricantes' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNGJkODUxY2UtODAwMy00OGUyLThhMDMtY2JkMGQ5ZTJiYTRlIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Llantería' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNjkxZGI0ZjYtNWNjYy00MWE5LTk1M2YtM2MyYzEzNGZmNGQyIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Tornillería' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYjg1YzFiMzAtOTRhYy00ZmM0LWE1NzctNTI3MWU1MjMwNzlkIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'Materiales_compactación' %}
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiZTJkYjQzMDQtZWFlNC00YTBmLThmZjctMDM0OGNkMzE4NmQ4IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% elif permiso == 'General' %}
+            <iframe src="https://app.powerbi.com/view?r=LINK_GENERAL"
+                    style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+          {% endif %}
+      </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

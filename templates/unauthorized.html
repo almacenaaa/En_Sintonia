@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="text-danger">No tienes permiso para acceder a esta sección</h3>
+<a href="{{ url_for('dashboard') }}" class="btn btn-primary">Volver</a>
+{% endblock %}

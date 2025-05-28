@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+<h2>Administrar Permisos de Usuarios</h2>
+
+{% for user in users %}
+<form method="POST" class="mb-4 border p-3 rounded bg-white">
+    <input type="hidden" name="username" value="{{ user.username }}">
+    <h5 class="mb-2">{{ user.username }}</h5>
+
+    {% for permiso in permisos_disponibles %}
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="permissions" value="{{ permiso }}"
+               id="{{ permiso|lower|replace(' ', '_') }}-{{ user.username }}"
+               {% if permiso in user.permissions %}checked{% endif %}>
+        <label class="form-check-label" for="{{ permiso|lower|replace(' ', '_') }}-{{ user.username }}">
+            {{ permiso.replace('_', ' ') }}
+        </label>
+    </div>
+    {% endfor %}
+
+    <button class="btn btn-primary mt-2">Guardar permisos</button>
+</form>
+{% endfor %}
+{% endblock %}

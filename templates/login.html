@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Iniciar Sesión{% endblock %}
+{% block content %}
+<div class="card shadow p-4" style="max-width: 400px; margin: auto;">
+    <h3 class="text-center text-primary mb-4">Iniciar Sesión</h3>
+    <form method="POST">
+        <input class="form-control mb-3" name="username" placeholder="Usuario" required>
+        <input class="form-control mb-3" type="password" name="password" placeholder="Contraseña" required>
+        <button class="btn btn-primary w-100">Entrar</button>
+    </form>
+    <div class="text-center mt-3">
+        <a href="{{ url_for('register') }}">¿No tienes cuenta? Regístrate aquí</a>
+    </div>
+</div>
+{% endblock %}
