@@ -8,6 +8,11 @@ from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
+print("MONGO_URI:", app.config.get('MONGO_URI'))
+
+# VALIDACIÓN
+if not app.config.get("MONGO_URI"):
+    raise RuntimeError("ERROR: No se encontró la variable MONGO_URI")
 
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
