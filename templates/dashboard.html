@@ -1,19 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Dashboard{% endblock %}
-
 {% block content %}
-<h2 class="mb-4 text-center text-primary fw-bold">📊 Panel de Visualización</h2>
+<h2 class="mb-4">Panel de Visualización</h2>
 
-<ul class="nav nav-tabs mb-4 justify-content-center" id="dashboardTabs" role="tablist">
+<ul class="nav nav-tabs mb-3" id="dashboardTabs" role="tablist">
   {% for permiso in current_user.permissions %}
     <li class="nav-item" role="presentation">
-      <button class="nav-link {% if loop.first %}active{% endif %}" 
-              id="tab-{{ permiso|lower }}-tab" 
-              data-bs-toggle="tab" 
-              data-bs-target="#tab-{{ permiso|lower }}" 
-              type="button" role="tab">
-        {{ permiso.replace('_', ' ') }}
-      </button>
+        <button class="nav-link {% if loop.first %}active{% endif %}" id="tab-{{ permiso|lower }}-tab" data-bs-toggle="tab" data-bs-target="#tab-{{ permiso|lower }}" type="button" role="tab">
+            {{ permiso.replace('_', ' ') }}
+        </button>
     </li>
   {% endfor %}
 </ul>
