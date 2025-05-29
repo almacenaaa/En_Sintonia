@@ -77,6 +77,8 @@ def login():
         user = mongo.db.users.find_one({'username': request.form['username']})
         if user and bcrypt.check_password_hash(user['password'], request.form['password']):
             login_user(User(user))
+            if 'admin' in user.get('permissions', []):
+                return redirect(url_for('admin_panel'))
             return redirect(url_for('dashboard'))
         flash('Credenciales incorrectas')
     return render_template('login.html')
