@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<ul class="nav nav-tabs mb-4" id="dashboardTabs" role="tablist">
+<ul class="nav nav-tabs mb-3" id="dashboardTabs" role="tablist">
     {% for permiso in current_user.permissions %}
     <li class="nav-item" role="presentation">
         <button class="nav-link {% if loop.first %}active{% endif %}" 
@@ -49,132 +49,225 @@
          id="tab-{{ permiso|lower|replace(' ', '-')|replace('_', '-') }}" 
          role="tabpanel"
          aria-labelledby="tab-{{ permiso|lower|replace(' ', '-')|replace('_', '-') }}-tab">
-        <div class="dashboard-iframe-container">
-            {% if permiso == 'Críticos' %}
+         
+        {% if permiso == 'Críticos' %}
+        <div class="powerbi-iframe-container single-iframe">
             <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYTYzYzJlYTctNDQ1OS00OTg2LTk3OTktMWY5YWIxMTU0YzU4IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Críticos" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Contratos' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMWJmMzM5NGEtMjYyNi00OTU5LTg0OTgtYmMyZmM2YmQ4NDY4IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Contratos" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Custodia' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMmIyYzE5NDEtMjc3NS00NjJmLWE0YzgtNzU1YTA0ZmI5Mzg2IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Custodia" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Hierro_Ductil' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYjE0ZTZiNTItODJkNi00OThhLWJjM2YtNWE4YzExMzQ3M2UwIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Hierro Dúctil" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Cajas_medidores' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNDlhOWU0OTItMTI2OC00YzQ4LTliZmMtYzY4NjQyYTY4MWM1IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Cajas Medidores" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Suministro_EPP' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYWI0OGIxNzQtMmNjOC00ODE3LThiYmQtODY4YWFkNTE2NWMzIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Suministro EPP" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Dotación' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNTU5MTdhYmEtZTk1Yy00MWJiLWEwNTktYzgyOGEzMzJhNjI5IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Dotación" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Abrazaderas_metálicas' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNGNiNjNlZDEtNDljMi00Y2FhLTliN2ItMTI0YmZhOTc5NGYyIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Abrazaderas Metálicas" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Válvulas_mariposa' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiN2ZlMWE3OGItMmJkMy00YWRkLTg4ZjMtOGI5YzM3ZTJjMGRlIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Válvulas Mariposa" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Válvulas_compuerta' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiZDc1ZDgwZDUtZDkwZi00YzYyLTlkNjAtNjUxY2IyNTlmYTQ3IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Válvulas Compuerta" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Tubería_ACC_PVC' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiOTY1YWVjZTEtNmEzMC00OWRmLTgzMDgtYzUzM2Q1NmQ4N2UzIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Tubería ACC PVC" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Accesorios_PEAD' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNTlkZmI0MzUtZTk2Yy00ZGJjLWI2NTktNTE4NmY2NWQwOTlmIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Accesorios PEAD" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Tubería_PEAD' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNTkyNmE0YzUtZDIzYS00MmZkLTkxYzAtNWM1OWIyN2I1YjM0IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Tubería PEAD" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Lubricantes' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNGJkODUxY2UtODAwMy00OGUyLThhMDMtY2JkMGQ5ZTJiYTRlIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Lubricantes" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Llantería' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNjkxZGI0ZjYtNWNjYy00MWE5LTk1M2YtM2MyYzEzNGZmNGQyIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Llantería" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Tornillería' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYjg1YzFiMzAtOTRhYy00ZmM0LWE1NzctNTI3MWU1MjMwNzlkIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Tornillería" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Materiales_compactación' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiZTJkYjQzMDQtZWFlNC00YTBmLThmZjctMDM0OGNkMzE4NmQ4IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Materiales de Compactación" allowfullscreen></iframe>
-            
-            {% elif permiso == 'Makei' %}
-            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMDE3ZDIzZGYtNzVkYy00ZDc4LWFmNjEtNTQ0MmIwY2Y0YTM4IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                    title="Panel de Makei" allowfullscreen></iframe>
-            
-            {% elif permiso == 'General' %}
-            <div class="general-dashboard-container">
-                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNzliYjc5ZTYtY2ExMC00MTk5LWI2NDctNmI1ZTU5ZWY4YTkwIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                        title="Panel General 1" allowfullscreen></iframe>
-
-                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYTliMmIzMGYtZTNhOS00NjljLWI4MjgtYWU0OThjNGZiYjUwIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                        title="Panel General 2" allowfullscreen></iframe>
-
-                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiN2NiNDQ3NmQtODQyNC00N2IzLWFhNTMtNzk1MjI1NDg1NGQzIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                        title="Panel General 3" allowfullscreen></iframe>
-
-                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiN2QzMTgyODAtZmYxZC00ZjI5LTg1NzItMTM5ODBkNjc1NDY1IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                        title="Panel General 4" allowfullscreen></iframe>
-
-                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNDQzZGVjYmMtZTNmNS00ZjdhLTkyMzYtOGMyNmVlODI5Nzg2IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                        title="Panel General 5" allowfullscreen></iframe>
-
-                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNzdlMWYxYzYtYjUzOC00ZGExLThhMDEtM2IwZWZlOWI3NDkwIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
-                        title="Panel General 6" allowfullscreen></iframe>
-            </div>
-            {% endif %}
+                    title="Panel de Críticos" 
+                    allowfullscreen></iframe>
         </div>
+        
+        {% elif permiso == 'Contratos' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMWJmMzM5NGEtMjYyNi00OTU5LTg0OTgtYmMyZmM2YmQ4NDY4IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Contratos" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Custodia' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMmIyYzE5NDEtMjc3NS00NjJmLWE0YzgtNzU1YTA0ZmI5Mzg2IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Custodia" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Hierro_Ductil' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYjE0ZTZiNTItODJkNi00OThhLWJjM2YtNWE4YzExMzQ3M2UwIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Hierro Dúctil" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Cajas_medidores' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNDlhOWU0OTItMTI2OC00YzQ4LTliZmMtYzY4NjQyYTY4MWM1IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Cajas Medidores" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Suministro_EPP' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYWI0OGIxNzQtMmNjOC00ODE3LThiYmQtODY4YWFkNTE2NWMzIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Suministro EPP" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Dotación' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNTU5MTdhYmEtZTk1Yy00MWJiLWEwNTktYzgyOGEzMzJhNjI5IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Dotación" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Abrazaderas_metálicas' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNGNiNjNlZDEtNDljMi00Y2FhLTliN2ItMTI0YmZhOTc5NGYyIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Abrazaderas Metálicas" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Válvulas_mariposa' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiN2ZlMWE3OGItMmJkMy00YWRkLTg4ZjMtOGI5YzM3ZTJjMGRlIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Válvulas Mariposa" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Válvulas_compuerta' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiZDc1ZDgwZDUtZDkwZi00YzYyLTlkNjAtNjUxY2IyNTlmYTQ3IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Válvulas Compuerta" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Tubería_ACC_PVC' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiOTY1YWVjZTEtNmEzMC00OWRmLTgzMDgtYzUzM2Q1NmQ4N2UzIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Tubería ACC PVC" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Accesorios_PEAD' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNTlkZmI0MzUtZTk2Yy00ZGJjLWI2NTktNTE4NmY2NWQwOTlmIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Accesorios PEAD" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Tubería_PEAD' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNTkyNmE0YzUtZDIzYS00MmZkLTkxYzAtNWM1OWIyN2I1YjM0IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Tubería PEAD" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Lubricantes' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNGJkODUxY2UtODAwMy00OGUyLThhMDMtY2JkMGQ5ZTJiYTRlIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Lubricantes" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Llantería' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNjkxZGI0ZjYtNWNjYy00MWE5LTk1M2YtM2MyYzEzNGZmNGQyIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Llantería" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Tornillería' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYjg1YzFiMzAtOTRhYy00ZmM0LWE1NzctNTI3MWU1MjMwNzlkIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Tornillería" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Materiales_compactación' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiZTJkYjQzMDQtZWFlNC00YTBmLThmZjctMDM0OGNkMzE4NmQ4IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Materiales de Compactación" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'Makei' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMDE3ZDIzZGYtNzVkYy00ZDc4LWFmNjEtNTQ0MmIwY2Y0YTM4IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Makei" 
+                    allowfullscreen></iframe>
+        </div>
+        
+        {% elif permiso == 'General' %}
+        <div class="general-dashboard-container">
+            <div class="powerbi-iframe-container">
+                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNzliYjc5ZTYtY2ExMC00MTk5LWI2NDctNmI1ZTU5ZWY4YTkwIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                        title="Panel General 1" 
+                        allowfullscreen></iframe>
+            </div>
+            
+            <div class="powerbi-iframe-container">
+                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiYTliMmIzMGYtZTNhOS00NjljLWI4MjgtYWU0OThjNGZiYjUwIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                        title="Panel General 2" 
+                        allowfullscreen></iframe>
+            </div>
+            
+            <div class="powerbi-iframe-container">
+                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiN2NiNDQ3NmQtODQyNC00N2IzLWFhNTMtNzk1MjI1NDg1NGQzIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                        title="Panel General 3" 
+                        allowfullscreen></iframe>
+            </div>
+            
+            <div class="powerbi-iframe-container">
+                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiN2QzMTgyODAtZmYxZC00ZjI5LTg1NzItMTM5ODBkNjc1NDY1IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                        title="Panel General 4" 
+                        allowfullscreen></iframe>
+            </div>
+            
+            <div class="powerbi-iframe-container">
+                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNDQzZGVjYmMtZTNmNS00ZjdhLTkyMzYtOGMyNmVlODI5Nzg2IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                        title="Panel General 5" 
+                        allowfullscreen></iframe>
+            </div>
+            
+            <div class="powerbi-iframe-container">
+                <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNzdlMWYxYzYtYjUzOC00ZGExLThhMDEtM2IwZWZlOWI3NDkwIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                        title="Panel General 6" 
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+        {% endif %}
     </div>
     {% endfor %}
 </div>
 
 <style>
+    /* Contenedor principal del tablero */
+    .powerbi-iframe-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 75%; /* Relación de aspecto ajustada para dashboards */
+        height: 0;
+        overflow: hidden;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        background: #f8f9fa;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Iframe dentro del contenedor */
+    .powerbi-iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    
+    /* Contenedor especial para el panel General */
     .general-dashboard-container {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
     
-    .general-dashboard-container iframe {
-        width: 100%;
-        height: 500px;
-        border-radius: 0.75rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    /* Ajustes para pantallas grandes */
+    @media (min-width: 1200px) {
+        .general-dashboard-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
-
-    /* Efecto hover para las pestañas */
-    .nav-tabs .nav-link:hover {
-        transform: translateY(-2px);
-        transition: all 0.2s ease;
+    
+    /* Asegurar que el contenedor del tab content ocupe todo el espacio */
+    .tab-content {
+        min-height: 70vh;
     }
-
-    /* Animación suave al cambiar de pestaña */
-    .tab-pane.fade {
-        transition: opacity 0.3s ease;
-    }
-
-    /* Mejor visualización en móviles */
+    
+    /* Ajustes para móviles */
     @media (max-width: 768px) {
+        .powerbi-iframe-container {
+            padding-bottom: 100%; /* Más alto en móviles */
+        }
+        
         .dashboard-header {
             flex-direction: column;
             align-items: flex-start;
@@ -189,6 +282,17 @@
         .nav-tabs .nav-link i {
             margin-right: 0.3rem;
         }
+    }
+    
+    /* Efecto hover para las pestañas */
+    .nav-tabs .nav-link:hover {
+        transform: translateY(-2px);
+        transition: all 0.2s ease;
+    }
+
+    /* Animación suave al cambiar de pestaña */
+    .tab-pane.fade {
+        transition: opacity 0.3s ease;
     }
 </style>
 {% endblock %}
