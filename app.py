@@ -126,7 +126,7 @@ def admin_panel():
         'Críticos', 'Custodia', 'Hierro_Ductil', 'Cajas_medidores', 'Suministro_EPP', 'Dotación',
         'Abrazaderas_metálicas', 'Válvulas_mariposa', 'Tubería_ACC_PVC', 'Accesorios_PEAD',
         'Tubería_PEAD', 'Lubricantes', 'Llantería', 'Tornillería',
-        'Materiales_compactación', 'General', 'Makei'
+        'Materiales_compactación', 'General', 'Tapabocas'
     ]
 
     if request.method == 'POST':
