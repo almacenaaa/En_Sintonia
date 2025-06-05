@@ -6,9 +6,18 @@ from datetime import timedelta, datetime
 from bson.objectid import ObjectId
 from config import Config
 
+
+from itsdangerous import URLSafeTimedSerializer
+from flask import session
+
 app = Flask(__name__)
 app.config.from_object(Config)
 print("MONGO_URI:", app.config.get('MONGO_URI'))
+
+
+s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+
+
 
 # VALIDACIÓN
 if not app.config.get("MONGO_URI"):
@@ -139,6 +148,34 @@ def admin_panel():
 
     return render_template('admin.html', users=all_users, permisos_disponibles=permisos_disponibles)
 
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    if request.method == 'POST':
+        username = request.form['username']
+        user = mongo.db.users.find_one({'username': username})
+        if user:
+            token = s.dumps(username, salt='reset-password')
+            reset_url = url_for('change_password_token', token=token, _external=True)
+            flash(f'Usa este enlace para restablecer tu contraseña: {reset_url}')
+        else:
+            flash('Usuario no encontrado.')
+    return render_template('reset_password.html')
+
+@app.route('/change_password/<token>', methods=['GET', 'POST'])
+def change_password_token(token):
+    try:
+        username = s.loads(token, salt='reset-password', max_age=900)  # 15 min
+    except Exception as e:
+        return 'Enlace expirado o inválido', 403
+
+    if request.method == 'POST':
+        new_password = request.form['new_password']
+        hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+        mongo.db.users.update_one({'username': username}, {'$set': {'password': hashed_password}})
+        flash('Contraseña actualizada correctamente.')
+        return redirect(url_for('login'))
+
+    return render_template('change_password.html')
 
 if __name__ == '__main__':
     app.run()
