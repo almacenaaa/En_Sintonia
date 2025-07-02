@@ -36,6 +36,9 @@
                 {% elif permiso == 'Materiales_compactación' %}fa-compress-alt
                 {% elif permiso == 'Tapabocas' %}fa-tools
                 {% elif permiso == 'General' %}fa-chart-line
+                {% elif permiso == 'Hierro_Ductil_2' %}fa-cubes
+                {% elif permiso == 'Hierro_Ductil_3' %}fa-cubes
+                {% elif permiso == 'Válvulas_laton' %}fa-toggle-on
                 {% endif %} me-2"></i>
             {{ permiso.replace('_', ' ') }}
         </button>
@@ -77,7 +80,28 @@
                     title="Panel de Hierro Dúctil" 
                     allowfullscreen></iframe>
         </div>
+
+        {% elif permiso == 'Hierro_Ductil_2' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiOWU0NDlkOGYtYTdkMy00YmY5LWIyMjEtZDIzNTg5N2UxZTBkIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Hierro Dúctil" 
+                    allowfullscreen></iframe>
+        </div>
+
+        {% elif permiso == 'Hierro_Ductil_3' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMzA1ZmNjYmUtM2JiYi00MGU5LWJjZjMtYjVmYjM1MWUwNDYyIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Hierro Dúctil" 
+                    allowfullscreen></iframe>
+        </div>
         
+        {% elif permiso == 'Válvulas_laton' %}
+        <div class="powerbi-iframe-container single-iframe">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiMzFkNjk2MzUtNTE5Yy00NWQyLWJiZTctYTkyNmJiZTFmOWYzIiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
+                    title="Panel de Hierro Dúctil" 
+                    allowfullscreen></iframe>
+        </div>
+
         {% elif permiso == 'Cajas_medidores' %}
         <div class="powerbi-iframe-container single-iframe">
             <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNDlhOWU0OTItMTI2OC00YzQ4LTliZmMtYzY4NjQyYTY4MWM1IiwidCI6IjYyZTZmOWFiLWI0MWItNGMzMy05M2E3LTAzNzBmNjk1OTkxNyIsImMiOjR9"
